@@ -1,42 +1,56 @@
 "use client";
-
+import { useState } from "react";
 import Link from "next/link";
 import styles from "./pricing.module.css";
 import Image from "next/image";
 
 export default function Pricing() {
+   const [selected, setSelected] = useState<"student" | "parent">("student");
+
   return (
     <section id="pricing" className={styles.section}>
       <div className={styles.container}>
-        <div
-          className={`${styles.textCenter} ${styles.mb16} ${styles.fadeIn} fade-in`}
-        >
+        <div className={`${styles.textCenter} ${styles.mb16} ${styles.fadeIn} fade-in`}>
           <h2 className={styles.heading}>Simple, Transparent Pricing</h2>
           <p className={styles.subheading}>
             Start free, upgrade when you need more insights
           </p>
 
-          {/* Student/Parent Toggle */}
-          <div className={styles.toggleWrapper}>
+          {/* Toggle Buttons */}
+          <div className={styles.switchWrapper}>
             <button
               id="studentToggle"
-              // TODO: add togglePricing('student') logic
-              className={styles.studentToggle}
-              aria-label="View pricing for students"
+              onClick={() => setSelected("student")}
+              className={`${styles.switchButton} ${
+                selected === "student" ? styles.activeButton : styles.inactiveButton
+              }`}
             >
               For Students
             </button>
             <button
               id="parentToggle"
-              // TODO: add togglePricing('parent') logic
-              className={styles.parentToggle}
-              aria-label="View pricing for parents"
+              onClick={() => setSelected("parent")}
+              className={`${styles.switchButton} ${
+                selected === "parent" ? styles.activeButton : styles.inactiveButton
+              }`}
             >
               For Parents
             </button>
           </div>
-        </div>
 
+          {/* Pricing Cards Swap */}
+          <div className={styles.pricingCardsWrapper}>
+            <div
+              className={styles.pricingCardsInner}
+              style={{
+                transform: selected === "student" ? "translateX(0%)" : "translateX(-50%)",
+              }}
+            >
+              
+
+            </div>
+</div>
+</div>
         <div className={styles.pricingGrid}>
           {/* Free Plan */}
           <div className={`${styles.glassCard} ${styles.fadeIn} fade-in`}>

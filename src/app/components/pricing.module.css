@@ -1,3 +1,71 @@
+.switchWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 1rem;
+   background: rgba(225, 225, 225, 0.2);
+   box-shadow: 0 15px 20px -2px rgba(90, 89, 89, 0.1);
+    border-radius: 1rem;
+   display: inline-flex;
+}
+
+
+.switchButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  border: 2px solid #000000;
+  background-color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+.switchButton {
+  padding: 0.75rem 1.5rem;
+ margin-right: 0.55rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  background:white;
+  color:#30793a ;
+  transition: all 0.2s;
+}
+
+
+.activeButton {
+  transform: translateY(-2px);
+  background-color: #14120f;
+  color: white;
+}
+
+.inactiveButton {
+  transform: translateY(0);
+  background-color: white;
+  color: #0a0909;
+}
+
+/* Pricing Cards Swap */
+.pricingCardsWrapper {
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pricingCardsInner {
+  display: flex;
+  width: 200%;
+  transition: transform 0.5s ease;
+}
+
+.pricingCard {
+  width: 50%;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-right: 1rem;
+  text-align: center;
+}
 .section {
   padding-top: 5rem; /* py-20 */
   padding-bottom: 5rem;
@@ -56,29 +124,12 @@
 }
 
 .subheading {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: #4b5563;
 }
 
-.toggleWrapper {
-  margin-top: 2rem;
-  display: inline-flex;
-  background: rgba(225, 225, 225, 0.2);
-  border-radius: 1rem;
-  padding: 0.5rem;
-  box-shadow: 0 15px 20px -2px rgba(90, 89, 89, 0.1);
-}
 
-.studentToggle {
-  padding: 0.75rem 1.5rem;
- margin-right: 0.55rem;
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: 700;
-  background:white;
-  color:#3ba549 ;
-  transition: all 0.2s;
-}
+
 
 .parentToggle {
   padding: 0.75rem 1.5rem;
@@ -111,8 +162,11 @@
   backdrop-filter: blur(10px);
   border-radius: 1.5rem;
   padding: 2rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 10px 11px 10px rgba(10, 10, 10, 0.1);
+  height: 90%;
 }
+
+
 
 .glassCardBorder {
   position: relative;
@@ -120,7 +174,7 @@
   backdrop-filter: blur(10px);
   border-radius: 1.5rem;
   padding: 2rem;
-  border: 2px solid #5f2e1d9a;
+  border: 2px solid #1312129a;
 ;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
@@ -128,7 +182,7 @@
 .iconWrapperGreen {
   width: 4rem;
   height: 4rem;
-  background-image: linear-gradient(to bottom right, #4ade80, #14b8a6);
+  background-image: linear-gradient(to bottom right, #050030, #000000);
   border-radius: 1rem;
   display: flex;
   align-items: center;
@@ -227,11 +281,13 @@
 }
 
 .badge {
-  background-color: #f3e8c4;
-  color: #5f2e1d9a;
-  font-size: 0.875rem;
-  font-weight: 600;
+  background-color: #000000;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 400;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 0.6rem;
+  border-radius: 1rem;
 }
 
 .tokenBox {
@@ -269,8 +325,8 @@
 }
 
 .tokenBadge {
-  background-color: #f3e8c4;
-  color: #5f2e1d9a;
+  background-color: white;
+  color: rgb(0, 0, 0);
   padding:0.25rem;
   border-radius: 0.5rem;
   font-weight: 500;

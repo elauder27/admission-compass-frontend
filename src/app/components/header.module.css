@@ -2,18 +2,19 @@
   position: relative;
   top: 0;
   z-index: 50;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(90deg, #ffffff, #e2e2e2)
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.432);
+  background: linear-gradient(90deg, #25629b, #080133);
+  /* background: linear-gradient(90deg, #ffffffe3, #e2e2e2) */
 }
 
 /* container */
 .container {
-  max-width: 80rem;
+  max-width: 100rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 auto;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 600px) {
   .container {
     padding: 0 1.5rem;
   }
@@ -23,7 +24,7 @@
   .container {
     padding: 0 2rem;
   }
-}
+} 
 
 /* inner flex layout */
 .inner {
@@ -37,21 +38,25 @@
 .logoWrapper {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.7rem;
+
 }
 
 .logoImage {
   width: 3rem;
   height: 3rem;
   object-fit: contain;
-  border-radius: 50%;
+  border-radius: 50%; 
+   
 }
  
-/* .brandName {
-  color: rgb(3, 3, 20);
+.brandName {
+  color:white;
+  /* color: rgba(6, 6, 41, 0.979) */;
   font-weight: 650;
   font-size: 1.5rem;
-} */
+  
+} 
 
 /* navigation */
 .nav {
@@ -66,9 +71,11 @@
 }
 
 .navLink {
-  color: #0c0e0c;
+  color: white;
   transition: color 0.2s;
   text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .navLink:hover {
@@ -83,17 +90,34 @@
 }
 
 .loginButton {
-  color: #020000;
+  color:white;
   background: transparent;
   border: none;
-  padding: 0 1rem;
+  padding: 0.5rem 1.5rem;
   min-height: 44px;
   cursor: pointer;
   transition: color 0.2s;
+  font-size: 1rem;
+  font-weight: 600;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+
 }
 
 .loginButton:hover {
   color: #000000;
+  opacity: 1rem;
+   background: #fff;
+  color: #000000;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  min-height: 44px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 .signupButton {
@@ -102,6 +126,8 @@
   padding: 0.5rem 1.5rem;
   border-radius: 9999px;
   font-weight: 600;
+  font-size: 1rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   min-height: 44px;
   border: none;
   cursor: pointer;
@@ -110,4 +136,14 @@
 
 .signupButton:hover {
   background: #979090;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  min-height: 44px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+
 }

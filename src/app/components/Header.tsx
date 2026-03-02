@@ -5,6 +5,7 @@ import LoginModal from "./modals/LoginModal";
 import SignupModal from "./modals/SignupModal";
 import Image from "next/image";
 import getCurrentUser from "../lib/getCurrentUser";
+ import Link from "next/link";
 
 const Header: React.FC = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -102,14 +103,14 @@ const Header: React.FC = () => {
           {/* Logo */}
           <div className={styles.logoWrapper}>
             <Image
-              src="/admissioncompass.jpg"
+              src="/Admission.png"
               alt="Admission Compass Logo"
               width={40}
               height={40}
               className={styles.logoImage}
             />
-            {/*             <span className={styles.brandName}>ADMISSION COMPASS</span>
-             */}{" "}
+            {             <span className={styles.brandName}>ADMISSION COMPASS</span>
+             }{" "}
           </div>
 
           {/* Nav */}
@@ -120,9 +121,11 @@ const Header: React.FC = () => {
             <a href="#pricing" className={styles.navLink}>
               Pricing
             </a>
-            <a href="#about" className={styles.navLink}>
-              About
-            </a>
+          
+
+<Link href="/about" className={styles.navLink}>
+  About
+</Link>
             <a href="#contact" className={styles.navLink}>
               Contact
             </a>
