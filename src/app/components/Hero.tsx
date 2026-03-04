@@ -1,8 +1,14 @@
 "use client";
+import { useState } from "react";
 import React from "react";
 import styles from "./herosection.module.css";
+import SignupModal from "./modals/SignupModal";
+import { useRouter } from "next/navigation";
+
 
 const HeroSection: React.FC = () => {
+  const router = useRouter();
+   const [showSignup, setShowSignup] = useState(false);
   return (
     <section className={styles.hero}>
       <div className={styles.container}>
@@ -19,13 +25,28 @@ const HeroSection: React.FC = () => {
               university journey.
             </p>
             <div className={styles.buttonGroup}>
+
+              
               <button
-                onClick={() => console.log("Prediction Flow")}
+                onClick={() => 
+                  {  const token = localStorage.getItem("token");
+
+    if (!token) {
+      setShowSignup(true);
+    } else {
+      router.push("/dashboard");
+    }
+  }}
                 className={styles.primaryBtn}
                 aria-label="Check your admission chances"
               >
                 Check Your Chances
               </button>
+          {showSignup && (
+        <SignupModal closeModal={() => setShowSignup(false)} />
+      )}
+    
+  
               <button
                 className={styles.secondaryBtn}
                 aria-label="Try free features"
