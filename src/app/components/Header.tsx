@@ -5,24 +5,43 @@ import LoginModal from "./modals/LoginModal";
 import SignupModal from "./modals/SignupModal";
 import Image from "next/image";
 import getCurrentUser from "../lib/getCurrentUser";
+<<<<<<< HEAD
  import Link from "next/link";
+=======
+import toast from "react-hot-toast";
+import { AxiosError } from "axios";
+import { useSearchParams } from "next/navigation";
+>>>>>>> a4cb277593881f9c6f100e7078897b7309abdae6
 
 const Header: React.FC = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+  const [verifying, setVerifying] = useState<boolean>(true);
 
+  const searchParams = useSearchParams();
+  const ref = searchParams.get("ref");
   // Refs to detect outside clicks
   const loginRef = useRef<HTMLDivElement | null>(null);
   const signupRef = useRef<HTMLDivElement | null>(null);
-
+  useEffect(() => {
+    if (ref) setShowSignup(true);
+  }, [ref]);
   const closeAllModals = () => {
     setShowLogin(false);
     setShowSignup(false);
   };
   const getUser = async () => {
-    const userData: User = await getCurrentUser();
-    setUser(userData);
+    try {
+      const userData: User = await getCurrentUser();
+      setUser(userData);
+      setVerifying(false);
+    } catch (error) {
+      const err = error as AxiosError<{ error: string }>;
+      toast.error(
+        err?.response?.data?.error || err.message || "Failed to verify user",
+      );
+    }
   };
 
   useEffect(() => {
@@ -82,10 +101,7 @@ const Header: React.FC = () => {
             ref={loginRef}
             onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
           >
-            <LoginModal
-              getUser={getUser}
-              closeModal={() => setShowLogin(false)}
-            />
+            <LoginModal closeModal={() => setShowLogin(false)} />
           </div>
         )}
         {showSignup && (
@@ -133,7 +149,9 @@ const Header: React.FC = () => {
 
           {/* Buttons */}
           {user ? (
-            `Welcome, ${user.username}`
+            `Welcome, ${user.username} (${user.tokens} tokens)`
+          ) : verifying ? (
+            "Getting user info..."
           ) : (
             <div className={styles.buttonGroup}>
               <button onClick={openLogin} className={styles.loginButton}>

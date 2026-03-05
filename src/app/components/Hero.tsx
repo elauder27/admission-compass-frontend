@@ -1,4 +1,5 @@
 "use client";
+<<<<<<< HEAD
 import { useState } from "react";
 import React from "react";
 import styles from "./herosection.module.css";
@@ -9,11 +10,38 @@ import { useRouter } from "next/navigation";
 const HeroSection: React.FC = () => {
   const router = useRouter();
    const [showSignup, setShowSignup] = useState(false);
+=======
+import React, { useEffect, useState } from "react";
+import styles from "./herosection.module.css";
+import { useRouter } from "next/navigation";
+import axios from "../api/axios";
+
+const medals = ["🥇", "🥈", "🥉", "4️⃣", "5️⃣"];
+
+type Props = {
+  subjects: Subject[];
+};
+
+const HeroSection = ({ subjects }: Props) => {
+  const router = useRouter();
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      try {
+        const res = await axios.get("/leaderboard");
+        setLeaderboard(res.data.lead);
+      } catch {
+        // fail silently
+      }
+    };
+    fetchLeaderboard();
+  }, []);
+>>>>>>> a4cb277593881f9c6f100e7078897b7309abdae6
   return (
     <section className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.grid}>
-          {/* Left text column */}
           <div className={`${styles.textArea} ${styles.fadeIn} fade-in`}>
             <h1 className={styles.title}>
               Find Your Admission Path with{" "}
@@ -50,13 +78,21 @@ const HeroSection: React.FC = () => {
               <button
                 className={styles.secondaryBtn}
                 aria-label="Try free features"
+                onClick={() => router.push("/exam")}
               >
-                Practice 10 Free Questions
+                Practice Past Questions
               </button>
             </div>
+            {subjects.length > 0 && (
+              <div>
+                Available subjects{" "}
+                {subjects.map((s) => (
+                  <p key={s.code}>{s.name}</p>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Right card column */}
           <div className={`${styles.fadeIn} fade-in`}>
             <div className={styles.glassCard}>
               <div className={styles.cardContent}>
@@ -64,7 +100,6 @@ const HeroSection: React.FC = () => {
                   <h3 className={styles.progressTitle}>Admission Likelihood</h3>
                   <span className={styles.progressTag}>78%</span>
                 </div>
-
                 <div
                   className={styles.progressBar}
                   role="progressbar"
@@ -78,7 +113,6 @@ const HeroSection: React.FC = () => {
                     style={{ width: "78%" }}
                   ></div>
                 </div>
-
                 <div className={styles.statsGrid}>
                   <div className={styles.blueBox}>
                     <p className={styles.statLabel}>Cutoff Match</p>
@@ -89,7 +123,6 @@ const HeroSection: React.FC = () => {
                     <p className={styles.statValuePurple}>5 Found</p>
                   </div>
                 </div>
-
                 <div className={styles.altBox}>
                   <p className={styles.altLabel}>Top Alternatives</p>
                   <div className={styles.altList}>
@@ -102,6 +135,79 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {leaderboard.length > 0 && (
+          <div
+            className={`${styles.fadeIn} fade-in`}
+            style={{ marginTop: "48px" }}
+          >
+            <h2
+              style={{
+                textAlign: "center",
+                marginBottom: "24px",
+                fontSize: "1.4rem",
+                fontWeight: 700,
+              }}
+            >
+              🏆 Top Referrers
+            </h2>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "12px",
+                maxWidth: "480px",
+                margin: "0 auto",
+              }}
+            >
+              {leaderboard.map((entry, i) => (
+                <div
+                  key={entry.referrer._id}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "14px 20px",
+                    borderRadius: "12px",
+                    background: i === 0 ? "#fffbe6" : "#fff",
+                    boxShadow: "0 1px 6px rgba(0,0,0,0.07)",
+                    border: i === 0 ? "1px solid #ffe066" : "1px solid #f0f0f0",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                    }}
+                  >
+                    <span style={{ fontSize: "1.4rem" }}>{medals[i]}</span>
+                    <div>
+                      <p style={{ fontWeight: 600, margin: 0 }}>
+                        @{entry.referrer.username}
+                      </p>
+                      <p
+                        style={{
+                          fontSize: "0.85rem",
+                          color: "#888",
+                          margin: 0,
+                        }}
+                      >
+                        {entry.referrer.firstName}
+                      </p>
+                    </div>
+                  </div>
+                  <div style={{ textAlign: "right" }}>
+                    <p style={{ fontWeight: 700, margin: 0 }}>{entry.count}</p>
+                    <p style={{ fontSize: "0.8rem", color: "#888", margin: 0 }}>
+                      referrals
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
