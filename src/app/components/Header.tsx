@@ -5,13 +5,10 @@ import LoginModal from "./modals/LoginModal";
 import SignupModal from "./modals/SignupModal";
 import Image from "next/image";
 import getCurrentUser from "../lib/getCurrentUser";
-<<<<<<< HEAD
- import Link from "next/link";
-=======
+import Link from "next/link";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import { useSearchParams } from "next/navigation";
->>>>>>> a4cb277593881f9c6f100e7078897b7309abdae6
 
 const Header: React.FC = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -125,8 +122,7 @@ const Header: React.FC = () => {
               height={40}
               className={styles.logoImage}
             />
-            {             <span className={styles.brandName}>ADMISSION COMPASS</span>
-             }{" "}
+            {<span className={styles.brandName}>ADMISSION COMPASS</span>}{" "}
           </div>
 
           {/* Nav */}
@@ -137,11 +133,10 @@ const Header: React.FC = () => {
             <a href="#pricing" className={styles.navLink}>
               Pricing
             </a>
-          
 
-<Link href="/about" className={styles.navLink}>
-  About
-</Link>
+            <Link href="/about" className={styles.navLink}>
+              About
+            </Link>
             <a href="#contact" className={styles.navLink}>
               Contact
             </a>

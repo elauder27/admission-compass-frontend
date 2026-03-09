@@ -1,29 +1,20 @@
 "use client";
-import { useState } from "react";
-import React from "react";
-import styles from "./herosection.module.css";
 import SignupModal from "./modals/SignupModal";
-import { useRouter } from "next/navigation";
-
-
-const HeroSection: React.FC = () => {
-  const router = useRouter();
-   const [showSignup, setShowSignup] = useState(false);
-
 import React, { useEffect, useState } from "react";
 import styles from "./herosection.module.css";
 import { useRouter } from "next/navigation";
 import axios from "../api/axios";
 
-const medals = ["🥇", "🥈", "🥉", "4️⃣", "5️⃣"];
-
 type Props = {
   subjects: Subject[];
 };
 
-const HeroSection = ({ subjects }: Props) => {
+const HeroSection: React.FC<Props> = ({ subjects }) => {
   const router = useRouter();
+  const [showSignup, setShowSignup] = useState(false);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+
+  const medals = ["🥇", "🥈", "🥉", "4️⃣", "5️⃣"];
 
   useEffect(() => {
     const fetchLeaderboard = async () => {
@@ -51,28 +42,25 @@ const HeroSection = ({ subjects }: Props) => {
               university journey.
             </p>
             <div className={styles.buttonGroup}>
-
-              
               <button
-                onClick={() => 
-                  {  const token = localStorage.getItem("token");
+                onClick={() => {
+                  const token = localStorage.getItem("token");
 
-    if (!token) {
-      setShowSignup(true);
-    } else {
-      router.push("/dashboard");
-    }
-  }}
+                  if (!token) {
+                    setShowSignup(true);
+                  } else {
+                    router.push("/dashboard");
+                  }
+                }}
                 className={styles.primaryBtn}
                 aria-label="Check your admission chances"
               >
                 Check Your Chances
               </button>
-          {showSignup && (
-        <SignupModal closeModal={() => setShowSignup(false)} />
-      )}
-    
-  
+              {showSignup && (
+                <SignupModal closeModal={() => setShowSignup(false)} />
+              )}
+
               <button
                 className={styles.secondaryBtn}
                 aria-label="Try free features"
