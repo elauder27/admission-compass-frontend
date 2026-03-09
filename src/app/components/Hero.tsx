@@ -1,5 +1,4 @@
 "use client";
-<<<<<<< HEAD
 import { useState } from "react";
 import React from "react";
 import styles from "./herosection.module.css";
@@ -10,7 +9,7 @@ import { useRouter } from "next/navigation";
 const HeroSection: React.FC = () => {
   const router = useRouter();
    const [showSignup, setShowSignup] = useState(false);
-=======
+
 import React, { useEffect, useState } from "react";
 import styles from "./herosection.module.css";
 import { useRouter } from "next/navigation";
@@ -37,7 +36,6 @@ const HeroSection = ({ subjects }: Props) => {
     };
     fetchLeaderboard();
   }, []);
->>>>>>> a4cb277593881f9c6f100e7078897b7309abdae6
   return (
     <section className={styles.hero}>
       <div className={styles.container}>
